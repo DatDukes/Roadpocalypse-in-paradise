@@ -18,9 +18,22 @@ public class Map : MonoBehaviour
         if (!map.ContainsKey(mapPosition)) 
         {
             MapObject obj = Instantiate(prefab, transform).GetComponent<MapObject>();
+            obj.map = this;
+            obj.mapPosition = mapPosition;
             obj.transform.localPosition = new Vector3(mapPosition.x, 0, mapPosition.y);
             map.Add(mapPosition, obj);
+            obj.InitTile();
         }
+    }
+
+    public bool IsCellEmpty(int x, int y) 
+    {
+        return IsCellEmpty(new Vector2Int(x, y));
+    }
+
+    public bool IsCellEmpty(Vector3 pos)
+    {
+        return IsCellEmpty(new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z)));
     }
 
     public bool IsCellEmpty(Vector2Int cell)
@@ -33,6 +46,18 @@ public class Map : MonoBehaviour
         {
             return true;
         }
+    }
+
+    public MapObject GetMapObject(int x, int y, out bool found)
+    {
+        return GetMapObject(new Vector2Int(x, y), out found);
+    }
+
+    public MapObject GetMapObject(Vector2Int cell, out bool found)
+    {
+        MapObject obj = null;
+        found = map.TryGetValue(cell, out obj);
+        return obj;
     }
 
     public bool IsCellAloneInRange(Vector2Int cell, int range)

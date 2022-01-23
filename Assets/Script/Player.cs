@@ -28,9 +28,9 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton(action)) 
+        if (Input.GetButtonDown(action) && _currentResources > 0) 
         {
-            Map.AddObject(transform.position, ObjectToSpawn);
+            AddRoad();
         }
     }
 
@@ -46,6 +46,25 @@ public class Player : MonoBehaviour
             float rot = Vector3.Dot(move, transform.forward) * -0.5f + 0.5f;
 
             rigidbody.AddTorque(Vector3.up * rot * dir * ToqueSpeed, ForceMode.Impulse);
+        }
+    }
+
+    private void AddRoad()
+    {
+        if(Map.IsCellEmpty(transform.position))
+        {
+            Map.AddObject(transform.position, ObjectToSpawn);
+            RemoveRessource(1);
+        }
+        
+    }
+
+    public void RemoveRessource(int value)
+    {
+        if (_currentResources > 0)
+        {
+            _currentResources -= value ;
+            _resourceText.text = _currentResources.ToString();
         }
     }
 

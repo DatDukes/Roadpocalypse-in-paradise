@@ -7,6 +7,10 @@ public class LevelSettings : ScriptableObject
     public Vector2 _mapSize;
 
     public int _numberOfCity;
-    public int _minSpacingDistance;
+    public int _minSpacingCity;
+
+    public int _numberOfWell;
+    public int _minSpaceingWell;
+
     public int _numberOfObstacle;
 }

@@ -29,7 +29,7 @@ public class LevelController : MonoBehaviour
         ///Player 1 cities
         for(int i = 0; i < _levelSettings._numberOfCity; i++)
         {
-            Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingDistance);
+            Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
             Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
             _map.AddObject(posTranslated, _cityPrefab);
             
@@ -38,7 +38,7 @@ public class LevelController : MonoBehaviour
         ///Player 2 cities
         for (int i = 0; i < _levelSettings._numberOfCity; i++)
         {
-            Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingDistance);
+            Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
             Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
             _map.AddObject(posTranslated, _cityPrefab);
         }
@@ -49,6 +49,14 @@ public class LevelController : MonoBehaviour
             Vector2 newPos = ReturnRandomPos();
 
             _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _obstaclePrefab);
+        }
+
+        ///Ressources wells
+        for(int i = 0; i < _levelSettings._numberOfWell; i++)
+        {
+            Vector2 newPos = ReturnRandomPos(_levelSettings._minSpaceingWell);
+
+            _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _ressourcePointPrefab);
         }
     }
 

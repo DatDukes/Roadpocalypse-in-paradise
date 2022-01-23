@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,6 +10,11 @@ public class Player : MonoBehaviour
     public float ToqueSpeed;
     public GameObject ObjectToSpawn;
     public Map Map;
+
+    public int _maxRessources;
+    public int _currentResources;
+    public TextMeshPro _resourceText;
+
     private string horizontal, vertical, action;
     private new Rigidbody rigidbody;
 
@@ -40,6 +46,15 @@ public class Player : MonoBehaviour
             float rot = Vector3.Dot(move, transform.forward) * -0.5f + 0.5f;
 
             rigidbody.AddTorque(Vector3.up * rot * dir * ToqueSpeed, ForceMode.Impulse);
+        }
+    }
+
+    public void GetRessource()
+    {
+        if(_currentResources < _maxRessources)
+        {
+            _currentResources++;
+            _resourceText.text = _currentResources.ToString();
         }
     }
 }

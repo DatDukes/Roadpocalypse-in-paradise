@@ -9,6 +9,7 @@ public class LevelController : MonoBehaviour
     public Map _map;
 
     public GameObject _cityPrefab;
+    public GameObject _city2Prefab;
     public GameObject _obstaclePrefab;
     public GameObject _ressourcePointPrefab;
 
@@ -40,7 +41,7 @@ public class LevelController : MonoBehaviour
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
             Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
-            _map.AddObject(posTranslated, _cityPrefab);
+            _map.AddObject(posTranslated, _city2Prefab);
         }
 
         ///Obstacles

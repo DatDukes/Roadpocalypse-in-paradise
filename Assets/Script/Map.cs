@@ -76,4 +76,16 @@ public class Map : MonoBehaviour
 
         return true;
     }
+
+
+    public void ClearMap()
+    {
+        foreach(KeyValuePair<Vector2Int, MapObject> i in map)
+        {
+            Destroy(i.Value.gameObject);
+        }
+
+        map = new Dictionary<Vector2Int, MapObject>();
+    }
+
 }

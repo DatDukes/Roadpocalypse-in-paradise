@@ -15,7 +15,7 @@ public class Map : MonoBehaviour
     {
         position = transform.InverseTransformPoint(position);
         Vector2Int mapPosition = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.z));
-        if (map.ContainsKey(mapPosition)) 
+        if (!map.ContainsKey(mapPosition)) 
         {
             MapObject obj = Instantiate(prefab, transform).GetComponent<MapObject>();
             obj.transform.localPosition = new Vector3(mapPosition.x, 0, mapPosition.y);

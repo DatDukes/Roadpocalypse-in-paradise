@@ -220,7 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Index: 1
-  Speed: 0.4
+  Speed: 0.25
   ToqueSpeed: 0.4
   ObjectToSpawn: {fileID: 6367211217915626695, guid: 576a512f4fab94e439d1c36639823b49, type: 3}
   Map: {fileID: 0}
@@ -237,7 +237,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 2.6
-  m_AngularDrag: 2
+  m_AngularDrag: 5
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -253,10 +253,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.21709007
-  m_Height: 0.89837456
+  m_Radius: 0.11
+  m_Height: 0.45
   m_Direction: 1
-  m_Center: {x: 0, y: 0.693097, z: 0.783685}
+  m_Center: {x: 0, y: 0.35, z: 0.4}
 --- !u!65 &6569063048057447466
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -268,8 +268,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.9697466, z: 1.120834}
-  m_Center: {x: 0, y: 0.7230556, z: -0.00008970499}
+  m_Size: {x: 0.5, y: 0.5, z: 0.5}
+  m_Center: {x: 0, y: 0.36, z: 0}
 --- !u!1001 &4919913279165419398
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -280,6 +280,18 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 5475d87f2103b7245b1acc9f7da35c24, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5475d87f2103b7245b1acc9f7da35c24, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5475d87f2103b7245b1acc9f7da35c24, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 5475d87f2103b7245b1acc9f7da35c24, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 5475d87f2103b7245b1acc9f7da35c24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -321,6 +333,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 5475d87f2103b7245b1acc9f7da35c24, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ba4ebddc6e1f114a85dbeb3677c1fbe, type: 2}
     - target: {fileID: 919132149155446097, guid: 5475d87f2103b7245b1acc9f7da35c24, type: 3}
       propertyPath: m_Name
       value: Car

@@ -17,4 +17,4 @@ MonoBehaviour:
   _minSpacingCity: 3
   _numberOfWell: 5
   _minSpaceingWell: 0
-  _numberOfObstacle: 3
+  _numberOfObstacle: 0

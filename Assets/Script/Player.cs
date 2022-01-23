@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     {
         horizontal = "HorizontalP" + Index;
         vertical = "VerticalP" + Index;
-        action = "Fire1";
+        action = "ActionP" + Index;
         rigidbody = GetComponent<Rigidbody>();
     }
 

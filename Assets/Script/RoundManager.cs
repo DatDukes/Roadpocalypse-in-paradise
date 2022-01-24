@@ -11,8 +11,11 @@ public class RoundManager : MonoBehaviour
     public GameObject _endRoundUI;
     public TextMeshProUGUI _timerText;
 
+    private GameManager gameManager;
+
     private void Start()
     {
+        gameManager = GameManager.Instance;
         remainingDuration = _roundDuration;
     }
 
@@ -21,7 +24,7 @@ public class RoundManager : MonoBehaviour
         if(remainingDuration <= 0)
         {
             print("round over");
-            _endRoundUI.SetActive(true);
+            gameManager._uiManager.DisplayEndRoundUI();
         }
         else
         {
@@ -33,8 +36,8 @@ public class RoundManager : MonoBehaviour
     public void OnNextRoundButton()
     {
         remainingDuration = _roundDuration;
-        _endRoundUI.SetActive(false);
-        GameManager.Instance._levelController._map.ClearMap();
-        GameManager.Instance._levelController.CreateLevel();
+        gameManager._uiManager.DisplayGameUI();
+        gameManager._levelController._map.ClearMap();
+        gameManager._levelController.CreateLevel();
     }
 }

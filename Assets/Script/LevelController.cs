@@ -14,7 +14,6 @@ public class LevelController : MonoBehaviour
     public GameObject _ressourcePointPrefab;
 
     public CityConnection CityConnection;
-    public int currentNumberOfWell;
 
     private int currentNumberOfWell;
 

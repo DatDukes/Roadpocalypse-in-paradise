@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public RoundManager _roundManager;
     public UIManager _uiManager;
 
+    public Player _player1;
+    public Player _player2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +23,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void  ResetPlayers()
+    {
+        _player1.RemoveRessource(_player1._currentResources);
+        _player2.RemoveRessource(_player2._currentResources);
     }
 }

@@ -21,10 +21,12 @@ public class RoundManager : MonoBehaviour
 
     private void Update()
     {
-        if(remainingDuration <= 0)
+        if(remainingDuration <= 0 && _endRoundUI.activeInHierarchy == false)
         {
             print("round over");
-            gameManager._uiManager.DisplayEndRoundUI();
+            gameManager._levelController.CityConnection.CheckConnection();
+            gameManager._uiManager.DisplayEndRoundUI(gameManager._levelController.CityConnection.playerOneScore, gameManager._levelController.CityConnection.playerTwoScore);
+            gameManager.ResetPlayers();
         }
         else
         {

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
     public LevelController _levelController;
     public RoundManager _roundManager;
+    public UIManager _uiManager;
 
     // Start is called before the first frame update
     void Start()

@@ -23,6 +23,10 @@ public class ResourcesWell : MapObject
     {
         _remainingRessources += value;
         _text.text = _remainingRessources.ToString();
+        if(_remainingRessources == 0)
+        {
+            GameManager.Instance._levelController.ReduceWellCount();
+        }
     }
 
     public void OnCollisionEnter(Collision collision)

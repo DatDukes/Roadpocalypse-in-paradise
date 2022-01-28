@@ -18,6 +18,7 @@ public class LevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentNumberOfWell = _levelSettings._numberOfWell;
         CreateLevel();
     }
 
@@ -54,12 +55,17 @@ public class LevelController : MonoBehaviour
         }
 
         ///Ressources wells
-        for(int i = 0; i < _levelSettings._numberOfWell; i++)
+        for(int i = 0; i < currentNumberOfWell; i++)
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpaceingWell);
 
             _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _ressourcePointPrefab);
         }
+    }
+
+    public void ReduceWellCount()
+    {
+        currentNumberOfWell--;
     }
 
     public Vector2Int ReturnRandomPos(int aloneRange = 0)

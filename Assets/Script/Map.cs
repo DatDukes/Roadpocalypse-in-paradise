@@ -11,7 +11,7 @@ public class Map : MonoBehaviour
         map = new Dictionary<Vector2Int, MapObject>();
     }
 
-    public void AddObject(Vector3 position, GameObject prefab) 
+    public MapObject AddObject(Vector3 position, GameObject prefab) 
     {
         position = transform.InverseTransformPoint(position);
         Vector2Int mapPosition = new Vector2Int(Mathf.RoundToInt(position.x), Mathf.RoundToInt(position.z));
@@ -23,7 +23,9 @@ public class Map : MonoBehaviour
             obj.transform.localPosition = new Vector3(mapPosition.x, 0, mapPosition.y);
             map.Add(mapPosition, obj);
             obj.InitTile();
+            return obj;
         }
+        return null;
     }
 
     public bool IsCellEmpty(int x, int y) 

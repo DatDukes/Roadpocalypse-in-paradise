@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 0}
   mapPosition: {x: 0, y: 0}
+  type: 1
   currentMesh: {fileID: 0}
   IRoad: {fileID: 2927154002864302488, guid: 055b64f3b54f08b4eb68e816bda41e57, type: 3}
   LRoad: {fileID: 1722497725958534954, guid: 733f530f91c297d45a6f3de0139685c9, type: 3}

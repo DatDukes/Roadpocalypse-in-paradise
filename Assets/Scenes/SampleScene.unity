@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7362299759162407424, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7362299759162407424, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_LocalPosition.y
@@ -636,6 +636,7 @@ GameObject:
   m_Component:
   - component: {fileID: 821769951}
   - component: {fileID: 821769950}
+  - component: {fileID: 821769952}
   m_Layer: 0
   m_Name: Map
   m_TagString: Untagged
@@ -669,6 +670,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &821769952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821769949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6c41b5a6e5bd14a927f9435eaa0b3c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  map: {fileID: 821769950}
+  cities: []
+  playerOneScore: 0
+  playerTwoScore: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,6 +1041,7 @@ MonoBehaviour:
   _city2Prefab: {fileID: 7000944003474255172, guid: ebe84783ff26aa049809a0f9fab1caad, type: 3}
   _obstaclePrefab: {fileID: 3124887568381774271, guid: 548659d2646be9e4bad0aeba9bc26c6f, type: 3}
   _ressourcePointPrefab: {fileID: 6818863138107398786, guid: b56643e28afe8824e9a14d4f3e735b78, type: 3}
+  CityConnection: {fileID: 821769952}
 --- !u!4 &1406364285
 Transform:
   m_ObjectHideFlags: 0
@@ -1050,7 +1068,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67a0529c27a7e6241ae2ac56b892f432, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _roundDuration: 20
+  _roundDuration: 60
   _endRoundUI: {fileID: 2055784616}
   _timerText: {fileID: 166057483}
 --- !u!114 &1406364287
@@ -1074,13 +1092,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6018672423543722754, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc03a99a4a9595249bd65dcd6188a6ca, type: 2}
     - target: {fileID: 7362299759162407424, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7362299759162407424, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.276
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7362299759162407424, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_LocalPosition.y

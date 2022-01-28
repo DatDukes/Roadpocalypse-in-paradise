@@ -109,3 +109,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f38e10cdadefc84c8dc91e5fda68e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: {fileID: 0}
+  mapPosition: {x: 0, y: 0}
+  type: 2

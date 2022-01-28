@@ -13,6 +13,8 @@ public class LevelController : MonoBehaviour
     public GameObject _obstaclePrefab;
     public GameObject _ressourcePointPrefab;
 
+    public CityConnection CityConnection;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +34,7 @@ public class LevelController : MonoBehaviour
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
             Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
-            _map.AddObject(posTranslated, _cityPrefab);
-            
+            CityConnection.cities.Add(_map.AddObject(posTranslated, _cityPrefab));
         }
 
         ///Player 2 cities
@@ -41,7 +42,7 @@ public class LevelController : MonoBehaviour
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
             Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
-            _map.AddObject(posTranslated, _city2Prefab);
+            CityConnection.cities.Add(_map.AddObject(posTranslated, _city2Prefab));
         }
 
         ///Obstacles

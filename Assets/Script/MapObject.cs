@@ -4,6 +4,7 @@ public class MapObject : MonoBehaviour
 {
     public Map map;
     public Vector2Int mapPosition;
+    public ObjectType type;
 
     public virtual void InitTile()
     {
@@ -14,4 +15,11 @@ public class MapObject : MonoBehaviour
     { 
         
     }
+}
+
+public enum ObjectType 
+{ 
+    City,
+    Road,
+    Other
 }

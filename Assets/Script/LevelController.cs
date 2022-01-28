@@ -15,6 +15,8 @@ public class LevelController : MonoBehaviour
 
     public CityConnection CityConnection;
 
+    private int currentNumberOfWell;
+
     // Start is called before the first frame update
     void Start()
     {

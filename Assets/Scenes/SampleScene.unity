@@ -1975,6 +1975,7 @@ MonoBehaviour:
   _obstaclePrefab: {fileID: 3124887568381774271, guid: 548659d2646be9e4bad0aeba9bc26c6f, type: 3}
   _ressourcePointPrefab: {fileID: 6818863138107398786, guid: b56643e28afe8824e9a14d4f3e735b78, type: 3}
   CityConnection: {fileID: 821769952}
+  currentNumberOfWell: 0
 --- !u!4 &1406364285
 Transform:
   m_ObjectHideFlags: 0

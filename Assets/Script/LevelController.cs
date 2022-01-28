@@ -32,12 +32,14 @@ public class LevelController : MonoBehaviour
 
     public void CreateLevel()
     {
+        CityConnection.Clear();
+
         ///Player 1 cities
-        for(int i = 0; i < _levelSettings._numberOfCity; i++)
+        for (int i = 0; i < _levelSettings._numberOfCity; i++)
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
             Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
-            CityConnection.cities.Add(_map.AddObject(posTranslated, _cityPrefab));
+            CityConnection.citiesP1.Add(_map.AddObject(posTranslated, _cityPrefab));
         }
 
         ///Player 2 cities
@@ -45,7 +47,7 @@ public class LevelController : MonoBehaviour
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
             Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
-            CityConnection.cities.Add(_map.AddObject(posTranslated, _city2Prefab));
+            CityConnection.citiesP2.Add(_map.AddObject(posTranslated, _city2Prefab));
         }
 
         ///Obstacles

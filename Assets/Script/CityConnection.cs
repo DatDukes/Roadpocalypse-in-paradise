@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using System;
 
 public class CityConnection : MonoBehaviour
 {
     public Map map;
-    public List<MapObject> cities;
-    public int playerOneScore, playerTwoScore;
+    public List<MapObject> citiesP1, citiesP2;
+    public List<Connection> ConnectionsP1, ConnectionsP2;
+    public int playerOneScore { get { return ConnectionsP1.Count; } }
+    public int playerTwoScore { get { return ConnectionsP2.Count; } }
 
     private void Update()
     {
@@ -16,32 +20,50 @@ public class CityConnection : MonoBehaviour
         }
     }
 
+    public void Clear() 
+    {
+        citiesP1.Clear();
+        citiesP2.Clear();
+    }
+
     public void CheckConnection() 
     {
-        //Dictionary<Vector2Int, MapObject> _map = new Dictionary<Vector2Int, MapObject>(map.map);
+        Dictionary<Vector2Int, MapObject> _map = new Dictionary<Vector2Int, MapObject>(map.map);
+        ConnectionsP1 = new List<Connection>();
 
-        for(int i = 0; i < cities.Count; i++) 
+        for (int i = 0; i < citiesP1.Count; i++) 
         {
-            Dictionary<Vector2Int, MapObject> _map = new Dictionary<Vector2Int, MapObject>(map.map);
+            _map = new Dictionary<Vector2Int, MapObject>(map.map);
             List<ConnectionNode> nodes = new List<ConnectionNode>();
-            nodes.Add(new ConnectionNode(cities[i], cities[i].mapPosition));
-            ProcessNodeList(ref _map, nodes);
+            nodes.Add(new ConnectionNode(new List<MapObject>() { citiesP1[i] }, citiesP1[i].mapPosition));
+            ProcessNodeList(ref _map, nodes, ConnectionsP1, 1);
+        }
+
+        _map = new Dictionary<Vector2Int, MapObject>(map.map);
+        ConnectionsP2 = new List<Connection>();
+
+        for (int i = 0; i < citiesP2.Count; i++)
+        {
+            _map = new Dictionary<Vector2Int, MapObject>(map.map);
+            List<ConnectionNode> nodes = new List<ConnectionNode>();
+            nodes.Add(new ConnectionNode(new List<MapObject>() { citiesP2[i] }, citiesP2[i].mapPosition));
+            ProcessNodeList(ref _map, nodes, ConnectionsP2, 2);
         }
     }
 
-    public void ProcessNodeList(ref Dictionary<Vector2Int, MapObject> map, List<ConnectionNode> nodes) 
+    public void ProcessNodeList(ref Dictionary<Vector2Int, MapObject> map, List<ConnectionNode> nodes, List<Connection> Connections, int player) 
     {
         List<ConnectionNode> newList = new List<ConnectionNode>();
 
         foreach(ConnectionNode node in nodes) 
         {
-            ProcessNode(ref map, ref newList, node);
+            ProcessNode(ref map, ref newList, node, Connections, player);
         }
 
-        if (newList.Count > 0) ProcessNodeList(ref map, newList);
+        if (newList.Count > 0) ProcessNodeList(ref map, newList, Connections, player);
     }
 
-    public void ProcessNode(ref Dictionary<Vector2Int, MapObject> map, ref List<ConnectionNode> nodes, ConnectionNode node) 
+    public void ProcessNode(ref Dictionary<Vector2Int, MapObject> map, ref List<ConnectionNode> nodes, ConnectionNode node, List<Connection> Connections, int player) 
     { 
         for(int i = 0; i < 4; i++) 
         {
@@ -69,22 +91,29 @@ public class CityConnection : MonoBehaviour
                 switch (obj.type)
                 {
                     case ObjectType.City:
-                        if (node.city != obj)
+                        List<MapObject> cityToAdd = new List<MapObject>();
+                        foreach(MapObject city in node.cities) 
                         {
-                            Debug.Log("Connection Found");
-                            City OriginCity = node.city.GetComponent<City>();
-                            City city = obj.GetComponent<City>();
-
-                            if (city.player == 1) playerOneScore++;
-                            else playerTwoScore++;
-
-                            if (OriginCity.player == 1) playerOneScore++;
-                            else playerTwoScore++;
+                            if (city != obj)
+                            {
+                                City c = obj.GetComponent<City>();
+                                if (c.player == player)
+                                {
+                                    Connection co = new Connection(city, obj);
+                                    if (!Connections.Any(c => c.Compare(co)))
+                                    {
+                                        Connections.Add(co);
+                                    }
+                                    cityToAdd.Add(obj);
+                                }
+                            }
                         }
+                        node.cities.Concat(cityToAdd);
+                        nodes.Add(new ConnectionNode(node.cities, pos));
                         break;
                     default:
                         map.Remove(pos);
-                        nodes.Add(new ConnectionNode(node.city, pos));
+                        nodes.Add(new ConnectionNode(node.cities, pos));
                         break;
                 }
             }
@@ -92,14 +121,33 @@ public class CityConnection : MonoBehaviour
     }
 }
 
+[Serializable]
+public class Connection 
+{ 
+    public Connection(MapObject A, MapObject B) 
+    {
+        this.A = A;
+        this.B = B;
+    }
+
+    public bool Compare(Connection connection) 
+    {
+        return (this.A == connection.A && this.B == connection.B) ||
+               (this.A == connection.B && this.B == connection.A); 
+    }
+
+    public MapObject A;
+    public MapObject B;
+}
+
 public class ConnectionNode
 {
-    public ConnectionNode (MapObject city, Vector2Int position) 
+    public ConnectionNode (List<MapObject> cities, Vector2Int position) 
     {
-        this.city = city;
+        this.cities = cities;
         this.position = position;
     }
-    public MapObject city;
+    public List<MapObject> cities;
     public Vector2Int position;
 }
 

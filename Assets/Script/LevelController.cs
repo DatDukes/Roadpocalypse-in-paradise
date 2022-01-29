@@ -17,17 +17,10 @@ public class LevelController : MonoBehaviour
 
     private int currentNumberOfWell;
 
-    // Start is called before the first frame update
     void Start()
     {
         currentNumberOfWell = _levelSettings._numberOfWell;
         CreateLevel();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void CreateLevel()
@@ -62,9 +55,13 @@ public class LevelController : MonoBehaviour
         for(int i = 0; i < currentNumberOfWell; i++)
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpaceingWell);
-
             _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _ressourcePointPrefab);
         }
+    }
+
+    public bool IsGameOver() 
+    {
+        return currentNumberOfWell == 0;
     }
 
     public void ReduceWellCount()

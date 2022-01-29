@@ -10,6 +10,8 @@ public class RoundManager : MonoBehaviour
 
     public GameObject _endRoundUI;
     public TextMeshProUGUI _timerText;
+    public int RoundWonP1, RoundWonP2;
+    public int RoundCount;
 
     private GameManager gameManager;
 
@@ -21,17 +23,34 @@ public class RoundManager : MonoBehaviour
 
     private void Update()
     {
-        if(remainingDuration <= 0 && _endRoundUI.activeInHierarchy == false)
+        if (remainingDuration <= 0 && _endRoundUI.activeInHierarchy == false)
         {
             print("round over");
             gameManager._levelController.CityConnection.CheckConnection();
-            gameManager._uiManager.DisplayEndRoundUI(gameManager._levelController.CityConnection.playerOneScore, gameManager._levelController.CityConnection.playerTwoScore);
+            if (gameManager._levelController.CityConnection.playerOneScore == gameManager._levelController.CityConnection.playerTwoScore)
+            {
+                RoundWonP1++;
+                RoundWonP2++;
+            }
+            else if (gameManager._levelController.CityConnection.playerOneScore > gameManager._levelController.CityConnection.playerTwoScore)
+            {
+                RoundWonP1++;
+            }
+            else
+            {
+                RoundWonP2++;
+            }
+            RoundCount++;
+            bool b = gameManager._levelController.IsGameOver();
+            gameManager._uiManager.DisplayEndRoundUI(gameManager._levelController.CityConnection.playerOneScore, gameManager._levelController.CityConnection.playerTwoScore, RoundWonP1, RoundWonP2, RoundCount > 10 || b, !b);
             gameManager.ResetPlayers();
+
+            _timerText.text = "Timer : 0";
         }
-        else
+        else if (remainingDuration > 0)
         {
             remainingDuration -= Time.deltaTime;
-            _timerText.text = "Timer : " + remainingDuration;
+            _timerText.text = "Timer : " + (int)remainingDuration;
         }
     }
 

@@ -1372,7 +1372,7 @@ MonoBehaviour:
     Every Resources are depleted
 
     Everyone
-    lose'
+    loose'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1728,8 +1728,8 @@ MonoBehaviour:
   Win: {fileID: 1493807604}
   Lose: {fileID: 160013581}
   Score: {fileID: 1888954741}
-  Button: {fileID: 166057481}
-  Timer: {fileID: 0}
+  Button: {fileID: 1494631854}
+  Timer: {fileID: 166057481}
   _scoreP1: {fileID: 523500456}
   _scoreP2: {fileID: 1899490283}
   _roundP1: {fileID: 769144341}
@@ -3109,7 +3109,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2055784617
 RectTransform:
   m_ObjectHideFlags: 0

@@ -8,8 +8,11 @@ public class UIManager : MonoBehaviour
     public GameObject _endRoundUI;
     public TextMeshProUGUI _timerText;
 
+    public GameObject Win, Lose, Score, Button, Timer;
     public TextMeshProUGUI _scoreP1;
     public TextMeshProUGUI _scoreP2;
+    public TextMeshProUGUI _roundP1;
+    public TextMeshProUGUI _roundP2;
     public TextMeshProUGUI _scoreTotal;
     public GameObject _crownP1;
     public GameObject _crownP2;
@@ -25,11 +28,34 @@ public class UIManager : MonoBehaviour
         _endRoundUI.SetActive(false);
     }
 
-    public void DisplayEndRoundUI(int score1, int score2)
+    public void DisplayEndRoundUI(int score1, int score2, int roundScore1, int roundScore2, bool End, bool win)
     {
+        if (End) 
+        {
+            if (win)
+            {
+                Win.SetActive(true);
+            }
+            else
+            {
+                Lose.SetActive(true);
+                Score.SetActive(false);
+            }
+            Button.SetActive(false);
+            Timer.SetActive(false);
+        }
+        else 
+        {
+            Score.SetActive(true);
+            Button.SetActive(true);
+            Timer.SetActive(true);
+        }
+
         _endRoundUI.SetActive(true);
-        _scoreP1.text = "Score : " + score1;
-        _scoreP2.text = "Score : " + score2;
+        _scoreP1.text = "City connected : " + score1;
+        _scoreP2.text = "City connected : " + score2;
+        _roundP1.text = "Round Won : " + roundScore1;
+        _roundP2.text = "Round Won : " + roundScore2;
 
         _scoreTotal.text = (score1 + score2).ToString();
 

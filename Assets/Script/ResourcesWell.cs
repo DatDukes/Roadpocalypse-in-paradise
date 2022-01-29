@@ -29,17 +29,22 @@ public class ResourcesWell : MapObject
         }
     }
 
-    public void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Player" && _remainingRessources > 0)
         {
             Player player = collision.gameObject.GetComponent<Player>();
             if(player._currentResources < player._maxRessources)
             {
-                ModifyRessourceCount(-1);
-                player.GetRessource();
+                //ModifyRessourceCount(-1);
+                //player.GetRessource();
             }
             
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
     }
 }

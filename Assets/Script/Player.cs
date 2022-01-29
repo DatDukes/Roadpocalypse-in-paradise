@@ -15,14 +15,18 @@ public class Player : MonoBehaviour
     public int _currentResources;
     public TextMeshPro _resourceText;
 
-    private string horizontal, vertical, action;
+    private string horizontal, vertical, action, gather;
     private new Rigidbody rigidbody;
+
+    private bool wellAvailable;
+    private ResourcesWell connectedWell;
 
     void Start()
     {
         horizontal = "HorizontalP" + Index;
         vertical = "VerticalP" + Index;
         action = "ActionP" + Index;
+        gather = "GatherP" + Index;
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -31,6 +35,12 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown(action) && _currentResources > 0) 
         {
             AddRoad();
+        }
+
+        if (Input.GetButtonDown(gather) && wellAvailable)
+        {
+            if(GetRessource())
+                connectedWell.ModifyRessourceCount(-1);
         }
     }
 
@@ -59,21 +69,43 @@ public class Player : MonoBehaviour
         
     }
 
-    public void RemoveRessource(int value)
+    public bool RemoveRessource(int value)
     {
         if (_currentResources > 0)
         {
             _currentResources -= value ;
             _resourceText.text = _currentResources.ToString();
+            return true;
         }
+        return false;
     }
 
-    public void GetRessource()
+    public bool GetRessource()
     {
         if(_currentResources < _maxRessources)
         {
             _currentResources++;
             _resourceText.text = _currentResources.ToString();
+            return true;
+        }
+        return false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Well")
+        {
+            connectedWell = other.GetComponent<ResourcesWell>();
+            wellAvailable = true;
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Well")
+        {
+            wellAvailable = false;
+        }
+    }
+
 }

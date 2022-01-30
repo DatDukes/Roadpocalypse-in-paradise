@@ -4,12 +4,45 @@ using UnityEngine;
 
 public class Road : MapObject
 {
+    public float timeBeforeDepletion;
+    public int Life 
+    {
+        get 
+        {
+            return life;
+        }
+        set 
+        {
+            life = value;
+            if (life <= 0)
+            {
+                map.map.Remove(mapPosition);
+                map.Roads.Remove(this);
+                Destroy(this.gameObject);
+            }
+            else 
+            {
+                currentMesh.GetComponentInChildren<Renderer>().sharedMaterial = life > 1 ? roadMaterial : brokenMaterial;
+            }
+        }
+    }
     public GameObject currentMesh;
     public GameObject IRoad, LRoad, TRoad, XRoad;
+    public Material roadMaterial, brokenMaterial;
+
+    private int life;
 
     public override void InitTile()
     {
         UpdateMesh(true);
+        Life = 2;
+        StartCoroutine(StartDepletionWithDelay());
+    }
+
+    IEnumerator StartDepletionWithDelay() 
+    {
+        yield return new WaitForSeconds(timeBeforeDepletion);
+        map.Roads.Add(this);
     }
 
     public override void UpdateTile()

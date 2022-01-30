@@ -1295,6 +1295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0dbdbae76cac1a640b6e17af203eaf21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Roads: []
+  DepletionTimer: 10
 --- !u!4 &821769951
 Transform:
   m_ObjectHideFlags: 0

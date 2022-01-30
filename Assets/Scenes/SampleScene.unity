@@ -1743,6 +1743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _endRoundUI: {fileID: 2055784616}
   _timerText: {fileID: 166057483}
+  _currentPowerTest: {fileID: 166057483}
   Win: {fileID: 1493807604}
   Lose: {fileID: 160013581}
   Score: {fileID: 1888954741}
@@ -2217,6 +2218,8 @@ MonoBehaviour:
   _ressourcePointPrefab: {fileID: 6818863138107398786, guid: b56643e28afe8824e9a14d4f3e735b78, type: 3}
   _powerSource: {fileID: 7000944003474255172, guid: b489ee972c49c3841b879539b3a06691, type: 3}
   CityConnection: {fileID: 821769952}
+  _mainCity: {fileID: 0}
+  _currentPower: 20
 --- !u!4 &1406364285
 Transform:
   m_ObjectHideFlags: 0

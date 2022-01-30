@@ -19,6 +19,8 @@ MonoBehaviour:
   _minSpaceingWell: 0
   _numberOfObstacle: 0
   _numberOfPowerSources: 5
+  _powerSourceDepletionInterval: 5
   _citySpawnInterval: 10
   _citySpawnMinDistance: 3
   _citySpawnMaxDistance: 5
+  _citySpawnDistanceIncrement: 0.5

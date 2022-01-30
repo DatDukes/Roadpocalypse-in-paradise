@@ -18,11 +18,18 @@ public class LevelController : MonoBehaviour
 
     private List<City> allCities = new List<City>();
     private int currentNumberOfWell;
+    private City mainCity;
+    private int newSpawnMinDistance;
+    private int newSpawnMaxDistance;
 
     void Start()
     {
         currentNumberOfWell = _levelSettings._numberOfWell;
-        CreateLevel();
+        newSpawnMinDistance = _levelSettings._citySpawnMinDistance;
+        newSpawnMaxDistance = _levelSettings._citySpawnMaxDistance;
+        //CreateLevel();
+        StartCoroutine(CityExpensionCouroutine());
+
     }
 
     public void CreateLevel()
@@ -106,5 +113,49 @@ public class LevelController : MonoBehaviour
         }
 
         return Vector2Int.zero;
+    }
+
+    public IEnumerator CityExpensionCouroutine()
+    {
+        mainCity = _map.AddObject(Vector3.zero, _cityPrefab).GetComponent<City>();
+        allCities.Add(mainCity);
+
+        ///Ressources wells
+        for (int i = 0; i < currentNumberOfWell; i++)
+        {
+            Vector2 newPos = ReturnRandomPos(_levelSettings._minSpaceingWell);
+            _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _ressourcePointPrefab);
+        }
+
+        while (true)
+        {
+            yield return new WaitForSeconds(_levelSettings._citySpawnInterval);
+            ///New city spawn logic
+            Vector2 newPos = Random.insideUnitCircle.normalized * Random.Range(newSpawnMinDistance, newSpawnMaxDistance); //new Vector2(Random.Range(newSpawnMinDistance, newSpawnMaxDistance), Random.Range(newSpawnMinDistance, newSpawnMaxDistance));
+            while (_map.IsCellEmpty(newPos) == false)
+            {
+                newPos = new Vector2(Random.Range(newSpawnMinDistance, newSpawnMaxDistance), Random.Range(newSpawnMinDistance, newSpawnMaxDistance));
+            }
+            
+            Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
+            //CityConnection.citiesP1.Add(_map.AddObject(posTranslated, _cityPrefab));
+            allCities.Add(_map.AddObject(posTranslated, _cityPrefab).GetComponent<City>());
+
+            newSpawnMinDistance++;
+            newSpawnMaxDistance++;
+
+            ///New power source spawn logic
+            MapObject selectedCity = allCities[Random.Range(0, allCities.Count)];
+
+            newPos = Random.insideUnitCircle.normalized * Random.Range(2, 4);
+            newPos += new Vector2(selectedCity.transform.position.x, selectedCity.transform.position.z);
+            while (_map.IsCellEmpty(newPos) == false)
+            {
+                newPos = Random.insideUnitCircle.normalized * Random.Range(2, 4);
+                newPos += new Vector2(selectedCity.transform.position.x, selectedCity.transform.position.z);
+            }
+
+            _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _powerSource);
+        }
     }
 }

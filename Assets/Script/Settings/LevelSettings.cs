@@ -14,4 +14,8 @@ public class LevelSettings : ScriptableObject
 
     public int _numberOfObstacle;
     public int _numberOfPowerSources;
+
+    public float _citySpawnInterval;
+    public int _citySpawnMinDistance;
+    public int _citySpawnMaxDistance;
 }

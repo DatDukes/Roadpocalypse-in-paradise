@@ -30,9 +30,9 @@ public class LevelController : MonoBehaviour
         currentNumberOfWell = _levelSettings._numberOfWell;
         newSpawnMinDistance = _levelSettings._citySpawnMinDistance;
         newSpawnMaxDistance = _levelSettings._citySpawnMaxDistance;
-        //CreateLevel();
-        StartCoroutine(CityExpensionCouroutine());
-        StartCoroutine(PowerCouroutine());
+        CreateLevel();
+        //StartCoroutine(CityExpensionCouroutine());
+        //StartCoroutine(PowerCouroutine());
     }
 
 
@@ -51,13 +51,13 @@ public class LevelController : MonoBehaviour
         }
 
         ///Player 2 cities
-        for (int i = 0; i < _levelSettings._numberOfCity; i++)
+        /*for (int i = 0; i < _levelSettings._numberOfCity; i++)
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
             Vector3 posTranslated = new Vector3(newPos.x, 0, newPos.y);
             //CityConnection.citiesP2.Add(_map.AddObject(posTranslated, _city2Prefab));
             allCities.Add(_map.AddObject(posTranslated, _city2Prefab).GetComponent<City>());
-        }
+        }*/
 
         ///Obstacles
         for (int i = 0; i < _levelSettings._numberOfObstacle; i++)
@@ -70,17 +70,17 @@ public class LevelController : MonoBehaviour
         ///PowerSources
         for (int i = 0; i < _levelSettings._numberOfPowerSources; i++)
         {
-            Vector2 newPos = ReturnRandomPos();
+            Vector2 newPos = ReturnRandomPos(_levelSettings._minSpacingCity);
 
             _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _powerSource);
         }
 
         ///Ressources wells
-        for (int i = 0; i < currentNumberOfWell; i++)
+        /*for (int i = 0; i < currentNumberOfWell; i++)
         {
             Vector2 newPos = ReturnRandomPos(_levelSettings._minSpaceingWell);
             _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _ressourcePointPrefab);
-        }
+        }*/
     }
 
     public void RefreshCities() 

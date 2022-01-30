@@ -46,8 +46,11 @@ MonoBehaviour:
   map: {fileID: 0}
   mapPosition: {x: 0, y: 0}
   type: 1
+  timeBeforeDepletion: 10
   currentMesh: {fileID: 0}
   IRoad: {fileID: 2927154002864302488, guid: 055b64f3b54f08b4eb68e816bda41e57, type: 3}
   LRoad: {fileID: 1722497725958534954, guid: 733f530f91c297d45a6f3de0139685c9, type: 3}
   TRoad: {fileID: 259552167326245093, guid: be62c802b17c7b547a3f2a8c11f5e5db, type: 3}
   XRoad: {fileID: 3368649647268938217, guid: 172152019176f3349b05405adbf8e56e, type: 3}
+  roadMaterial: {fileID: 2100000, guid: 375bf0369c657764d9df0f838edcb598, type: 2}
+  brokenMaterial: {fileID: 2100000, guid: 605c71c42c1e73e46b453c407751310a, type: 2}

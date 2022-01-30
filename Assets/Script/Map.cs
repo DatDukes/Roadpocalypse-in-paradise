@@ -5,10 +5,25 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     public Dictionary<Vector2Int, MapObject> map;
+    public List<Road> Roads = new List<Road>();
+    public float DepletionTimer;
+
+    private float timer;
 
     private void Start()
     {
         map = new Dictionary<Vector2Int, MapObject>();
+    }
+
+    private void Update()
+    {
+        if(Roads.Count > 0) timer += Time.deltaTime;
+        if(timer > DepletionTimer) 
+        {
+            timer = 0;
+            int index = Random.Range(0, Roads.Count);
+            Roads[index].Life--;
+        }
     }
 
     public MapObject AddObject(Vector3 position, GameObject prefab) 

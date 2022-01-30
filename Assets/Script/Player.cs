@@ -10,16 +10,34 @@ public class Player : MonoBehaviour
     public float ToqueSpeed;
     public GameObject ObjectToSpawn;
     public Map Map;
+    public LevelController Level;
 
     public int _maxRessources;
-    public int _currentResources;
+    public int _currentResources 
+    {
+        get    
+        {
+            return ressources;
+        }
+
+        set 
+        {
+            ressources = value;
+            for(int i = 0; i < Boxes.Length; i++) 
+            {
+                Boxes[i].SetActive(i < ressources);
+            }
+        }
+    }
     public TextMeshPro _resourceText;
+    public GameObject[] Boxes;
 
     private string horizontal, vertical, action, gather;
     private new Rigidbody rigidbody;
 
     private bool wellAvailable;
     private ResourcesWell connectedWell;
+    private int ressources;
 
     void Start()
     {
@@ -28,13 +46,15 @@ public class Player : MonoBehaviour
         action = "ActionP" + Index;
         gather = "GatherP" + Index;
         rigidbody = GetComponent<Rigidbody>();
+        _currentResources = 0;
     }
 
     void Update()
     {
-        if (Input.GetButtonDown(action) && _currentResources > 0) 
+        if (Input.GetButtonDown(action)/*&& _currentResources > 0*/) 
         {
             AddRoad();
+            Level.RefreshCities();
         }
 
         if (Input.GetButtonDown(gather) && wellAvailable)

@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public LevelController _levelController;
     public RoundManager _roundManager;
     public UIManager _uiManager;
+    public CityConnection _cityConnection;
 
     public Player _player1;
     public Player _player2;

@@ -18,3 +18,4 @@ MonoBehaviour:
   _numberOfWell: 5
   _minSpaceingWell: 0
   _numberOfObstacle: 0
+  _numberOfPowerSources: 5

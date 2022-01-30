@@ -21,5 +21,6 @@ public enum ObjectType
 { 
     City,
     Road,
+    Power,
     Other
 }

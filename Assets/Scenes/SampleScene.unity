@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3879071389440429043, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ba4ebddc6e1f114a85dbeb3677c1fbe, type: 2}
+    - target: {fileID: 5442108407133725464, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7362299759162407424, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -178,10 +186,18 @@ PrefabInstance:
       propertyPath: Map
       value: 
       objectReference: {fileID: 821769950}
+    - target: {fileID: 7362299759162407425, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
+      propertyPath: Level
+      value: 
+      objectReference: {fileID: 1406364284}
     - target: {fileID: 7362299759162407427, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_Name
       value: Player1
       objectReference: {fileID: 0}
+    - target: {fileID: 8828357216543056984, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ba4ebddc6e1f114a85dbeb3677c1fbe, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
 --- !u!1 &26869535
@@ -2197,6 +2213,7 @@ MonoBehaviour:
   _city2Prefab: {fileID: 7000944003474255172, guid: ebe84783ff26aa049809a0f9fab1caad, type: 3}
   _obstaclePrefab: {fileID: 3124887568381774271, guid: 548659d2646be9e4bad0aeba9bc26c6f, type: 3}
   _ressourcePointPrefab: {fileID: 6818863138107398786, guid: b56643e28afe8824e9a14d4f3e735b78, type: 3}
+  _powerSource: {fileID: 7000944003474255172, guid: b489ee972c49c3841b879539b3a06691, type: 3}
   CityConnection: {fileID: 821769952}
 --- !u!4 &1406364285
 Transform:
@@ -2245,6 +2262,7 @@ MonoBehaviour:
   _levelController: {fileID: 1406364284}
   _roundManager: {fileID: 1406364286}
   _uiManager: {fileID: 968185498}
+  _cityConnection: {fileID: 821769952}
   _player1: {fileID: 475794163}
   _player2: {fileID: 1858809921}
 --- !u!114 &1406364288
@@ -2403,6 +2421,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3879071389440429043, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc03a99a4a9595249bd65dcd6188a6ca, type: 2}
     - target: {fileID: 6018672423543722754, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -2459,10 +2481,18 @@ PrefabInstance:
       propertyPath: Index
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7362299759162407425, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
+      propertyPath: Level
+      value: 
+      objectReference: {fileID: 1406364284}
     - target: {fileID: 7362299759162407427, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
+    - target: {fileID: 8828357216543056984, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: dc03a99a4a9595249bd65dcd6188a6ca, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5aef1df72ea2c314bb7c24b6a9b85064, type: 3}
 --- !u!1 &1493807604

@@ -270,7 +270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   map: {fileID: 0}
   mapPosition: {x: 0, y: 0}
-  type: 2
+  type: 3
   _maxRessources: 10
   _remainingRessources: 0
   _text: {fileID: 8347775272532750498}

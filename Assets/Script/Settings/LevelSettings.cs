@@ -13,4 +13,5 @@ public class LevelSettings : ScriptableObject
     public int _minSpaceingWell;
 
     public int _numberOfObstacle;
+    public int _numberOfPowerSources;
 }

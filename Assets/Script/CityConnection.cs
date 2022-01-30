@@ -26,6 +26,15 @@ public class CityConnection : MonoBehaviour
         citiesP2.Clear();
     }
 
+    public List<PowerSource> GetCityConnection(MapObject City) 
+    {
+        Dictionary<Vector2Int, MapObject> _map = new Dictionary<Vector2Int, MapObject>(map.map);
+        List<PowerSource> sources = new List<PowerSource>();
+        List<ConnectionNode> nodes = new List<ConnectionNode>() { new ConnectionNode(new List<MapObject>() { City }, City.mapPosition) };
+        ProcessNodeList(ref _map, nodes, sources, 1);
+        return sources;
+    }
+
     public void CheckConnection() 
     {
         Dictionary<Vector2Int, MapObject> _map = new Dictionary<Vector2Int, MapObject>(map.map);
@@ -56,6 +65,18 @@ public class CityConnection : MonoBehaviour
         List<ConnectionNode> newList = new List<ConnectionNode>();
 
         foreach(ConnectionNode node in nodes) 
+        {
+            ProcessNode(ref map, ref newList, node, Connections, player);
+        }
+
+        if (newList.Count > 0) ProcessNodeList(ref map, newList, Connections, player);
+    }
+
+    public void ProcessNodeList(ref Dictionary<Vector2Int, MapObject> map, List<ConnectionNode> nodes, List<PowerSource> Connections, int player)
+    {
+        List<ConnectionNode> newList = new List<ConnectionNode>();
+
+        foreach (ConnectionNode node in nodes)
         {
             ProcessNode(ref map, ref newList, node, Connections, player);
         }
@@ -109,6 +130,47 @@ public class CityConnection : MonoBehaviour
                             }
                         }
                         node.cities.Concat(cityToAdd);
+                        nodes.Add(new ConnectionNode(node.cities, pos));
+                        break;
+                    default:
+                        map.Remove(pos);
+                        nodes.Add(new ConnectionNode(node.cities, pos));
+                        break;
+                }
+            }
+        }
+    }
+
+    public void ProcessNode(ref Dictionary<Vector2Int, MapObject> map, ref List<ConnectionNode> nodes, ConnectionNode node, List<PowerSource> Connections, int player)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Vector2Int pos = node.position;
+
+            switch (i)
+            {
+                case 0:
+                    pos.y += 1;
+                    break;
+                case 1:
+                    pos.x += 1;
+                    break;
+                case 2:
+                    pos.y -= 1;
+                    break;
+                case 3:
+                    pos.x -= 1;
+                    break;
+            }
+
+
+            if (map.TryGetValue(pos, out MapObject obj))
+            {
+                switch (obj.type)
+                {
+                    case ObjectType.Power:
+                        Connections.Add(obj.GetComponent<PowerSource>());
+                        map.Remove(pos);
                         nodes.Add(new ConnectionNode(node.cities, pos));
                         break;
                     default:

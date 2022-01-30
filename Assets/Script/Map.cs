@@ -33,6 +33,11 @@ public class Map : MonoBehaviour
         return IsCellEmpty(new Vector2Int(x, y));
     }
 
+    public bool IsCellEmpty(Vector2 pos)
+    {
+        return IsCellEmpty(new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.y)));
+    }
+
     public bool IsCellEmpty(Vector3 pos)
     {
         return IsCellEmpty(new Vector2Int(Mathf.RoundToInt(pos.x), Mathf.RoundToInt(pos.z)));

@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject _endRoundUI;
     public TextMeshProUGUI _timerText;
+    public TextMeshProUGUI _currentPowerTest;
 
     public GameObject Win, Lose, Score, Button, Timer;
     public TextMeshProUGUI _scoreP1;
@@ -21,6 +22,11 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public void RefreshCurrentPowerDisplay(int value)
+    {
+        _currentPowerTest.text = "Power remaining = " + value;
     }
 
     public void DisplayGameUI()

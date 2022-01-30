@@ -15,12 +15,15 @@ public class LevelController : MonoBehaviour
     public GameObject _powerSource;
 
     public CityConnection CityConnection;
+    public City _mainCity;
+    public int _currentPower;
 
     private List<City> allCities = new List<City>();
     private int currentNumberOfWell;
-    private City mainCity;
-    private int newSpawnMinDistance;
-    private int newSpawnMaxDistance;
+    private float newSpawnMinDistance;
+    private float newSpawnMaxDistance;
+
+    private int powerDepletionValue;
 
     void Start()
     {
@@ -29,8 +32,9 @@ public class LevelController : MonoBehaviour
         newSpawnMaxDistance = _levelSettings._citySpawnMaxDistance;
         //CreateLevel();
         StartCoroutine(CityExpensionCouroutine());
-
+        StartCoroutine(PowerCouroutine());
     }
+
 
     public void CreateLevel()
     {
@@ -89,7 +93,7 @@ public class LevelController : MonoBehaviour
 
     public bool IsGameOver() 
     {
-        return currentNumberOfWell == 0;
+        return _currentPower <= 0;
     }
 
     public void ReduceWellCount()
@@ -117,8 +121,8 @@ public class LevelController : MonoBehaviour
 
     public IEnumerator CityExpensionCouroutine()
     {
-        mainCity = _map.AddObject(Vector3.zero, _cityPrefab).GetComponent<City>();
-        allCities.Add(mainCity);
+        _mainCity = _map.AddObject(Vector3.zero, _cityPrefab).GetComponent<City>();
+        allCities.Add(_mainCity);
 
         ///Ressources wells
         for (int i = 0; i < currentNumberOfWell; i++)
@@ -141,8 +145,8 @@ public class LevelController : MonoBehaviour
             //CityConnection.citiesP1.Add(_map.AddObject(posTranslated, _cityPrefab));
             allCities.Add(_map.AddObject(posTranslated, _cityPrefab).GetComponent<City>());
 
-            newSpawnMinDistance++;
-            newSpawnMaxDistance++;
+            newSpawnMinDistance += _levelSettings._citySpawnDistanceIncrement;
+            newSpawnMaxDistance += _levelSettings._citySpawnDistanceIncrement;
 
             ///New power source spawn logic
             MapObject selectedCity = allCities[Random.Range(0, allCities.Count)];
@@ -156,6 +160,23 @@ public class LevelController : MonoBehaviour
             }
 
             _map.AddObject(new Vector3(newPos.x, 0, newPos.y), _powerSource);
+
+            powerDepletionValue++;
+        }
+    }
+
+    private IEnumerator PowerCouroutine()
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(_levelSettings._powerSourceDepletionInterval);
+
+            _currentPower += _mainCity.sources.Count;
+
+            _currentPower -= powerDepletionValue;
+
+
+            GameManager.Instance._uiManager.RefreshCurrentPowerDisplay(_currentPower);
         }
     }
 }

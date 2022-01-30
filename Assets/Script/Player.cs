@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown(action)/*&& _currentResources > 0*/) 
+        if (Input.GetButtonDown(action) && _currentResources > 0) 
         {
             AddRoad();
             Level.RefreshCities();

@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bc606cd41a90f145aaf91ec74c621c8, type: 3}
   m_Name: LevelSettings
   m_EditorClassIdentifier: 
-  _mapSize: {x: 15, y: 15}
-  _numberOfCity: 5
-  _minSpacingCity: 3
-  _numberOfWell: 5
+  _mapSize: {x: 20, y: 20}
+  _numberOfCity: 2
+  _minSpacingCity: 2
+  _numberOfWell: 0
   _minSpaceingWell: 0
-  _numberOfObstacle: 0
-  _numberOfPowerSources: 5
+  _numberOfObstacle: 30
+  _numberOfPowerSources: 8
   _powerSourceDepletionInterval: 5
   _citySpawnInterval: 10
   _citySpawnMinDistance: 3

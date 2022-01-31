@@ -57,10 +57,11 @@ public class Player : MonoBehaviour
             Level.RefreshCities();
         }
 
-        if (Input.GetButtonDown(gather) && wellAvailable)
+        if (Input.GetButtonDown(gather) && wellAvailable && _currentResources < Boxes.Length)
         {
-            if(GetRessource())
-                connectedWell.ModifyRessourceCount(-1);
+            _currentResources++;
+            //if (GetRessource())
+                //connectedWell.ModifyRessourceCount(-1);
         }
     }
 

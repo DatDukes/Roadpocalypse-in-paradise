@@ -30,9 +30,9 @@ public class LevelController : MonoBehaviour
         currentNumberOfWell = _levelSettings._numberOfWell;
         newSpawnMinDistance = _levelSettings._citySpawnMinDistance;
         newSpawnMaxDistance = _levelSettings._citySpawnMaxDistance;
-        //CreateLevel();
-        StartCoroutine(CityExpensionCouroutine());
-        StartCoroutine(PowerCouroutine());
+        CreateLevel();
+        //StartCoroutine(CityExpensionCouroutine());
+        //StartCoroutine(PowerCouroutine());
     }
 
 

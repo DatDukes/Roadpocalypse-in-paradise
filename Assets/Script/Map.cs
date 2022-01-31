@@ -75,6 +75,11 @@ public class Map : MonoBehaviour
         return GetMapObject(new Vector2Int(x, y), out found);
     }
 
+    public MapObject GetMapObject(int x, int y)
+    {
+        return GetMapObject(new Vector2Int(x, y), out bool found);
+    }
+
     public MapObject GetMapObject(Vector2Int cell, out bool found)
     {
         MapObject obj = null;

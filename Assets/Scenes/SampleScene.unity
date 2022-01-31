@@ -2212,8 +2212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelSettings: {fileID: 11400000, guid: 5c047f41c44d7b3458ea61a01a6d83cb, type: 2}
   _map: {fileID: 821769950}
-  _cityPrefab: {fileID: 7000944003474255172, guid: 05a2d2a33a81eab4eb71da6efe32486d, type: 3}
-  _city2Prefab: {fileID: 7000944003474255172, guid: ebe84783ff26aa049809a0f9fab1caad, type: 3}
+  _cityPrefab: {fileID: 7000944003474255172, guid: 3efdb9b996d245b409996efffda99a4a, type: 3}
+  _city2Prefab: {fileID: 7000944003474255172, guid: 3efdb9b996d245b409996efffda99a4a, type: 3}
   _obstaclePrefab: {fileID: 3124887568381774271, guid: 548659d2646be9e4bad0aeba9bc26c6f, type: 3}
   _ressourcePointPrefab: {fileID: 6818863138107398786, guid: b56643e28afe8824e9a14d4f3e735b78, type: 3}
   _powerSource: {fileID: 7000944003474255172, guid: b489ee972c49c3841b879539b3a06691, type: 3}

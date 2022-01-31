@@ -59,6 +59,11 @@ public class Road : MapObject
         objs.Add(map.GetMapObject(mapPosition.x - 1, mapPosition.y, out neighbors[2]));
         objs.Add(map.GetMapObject(mapPosition.x, mapPosition.y + 1, out neighbors[3]));
 
+        for(int i = 0; i < neighbors.Length; i++) 
+        {
+            neighbors[i] = neighbors[i] && objs[i].type != ObjectType.Other;
+        }
+
         int neighborsCount = (neighbors[0] ? 1 : 0) + (neighbors[1] ? 1 : 0) + (neighbors[2] ? 1 : 0) + (neighbors[3] ? 1 : 0);
         GameObject road = IRoad;
         float rotation = 0;

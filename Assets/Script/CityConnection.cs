@@ -132,7 +132,8 @@ public class CityConnection : MonoBehaviour
                         node.cities.Concat(cityToAdd);
                         nodes.Add(new ConnectionNode(node.cities, pos));
                         break;
-                    default:
+                    case ObjectType.Road :
+                    case ObjectType.Power :
                         map.Remove(pos);
                         nodes.Add(new ConnectionNode(node.cities, pos));
                         break;
